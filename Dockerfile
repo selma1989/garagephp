@@ -1,5 +1,5 @@
 #Utiliser une image php officielle avec Apache
-FROM php:8.2-apache 
+FROM php:8.3-apache 
 
 #Installer les dépendences et bibliothèques
 RUN apt-get update && apt-get install -y && apt-get install -y --no-install-recommends \
@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y && apt-get install -y --no-install-reco
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 #Ajouter ServerName
 RUN echo "ServerName localhost" >> /etc/apache2.conf
+# RUN sed -1 ' /<VirtualHost \*:80>a\   ServerName Localhost' /etc/apache2/sites-available/800-default.conf
 #Activer le mod_rewrite d'apache pour les URLs
 RUN a2enmod mod_rewrite
 
